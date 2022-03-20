@@ -1,8 +1,9 @@
-import React from 'react'
+
 import axios, { AxiosResponse } from 'axios'
+import { ICategory } from './../Models/CategoryModel';
 
 
-axios.defaults.baseURL = 'http://127.0.0.1:5000/'
+axios.defaults.baseURL = 'http:/192.168.1.30:5000/api'
 
 axios.interceptors.request.use((res) => { 
 
@@ -11,28 +12,37 @@ axios.interceptors.request.use((res) => {
 },
     (error:any)=> {
 
-    console.log(error)
+    console.log(error) 
 })
 
 
-axios.interceptors.response.use((response) => { 
+axios.interceptors.response.use((response:AxiosResponse) => { 
 
 
-    return response
-},
-    (responseError:any)=> {
-
-    console.log(responseError)
+    return response  
+}, 
+    (responseError:any)=> { 
+   
+    console.log(responseError)    
 })
 
 
-const Users= {
-    getAll:()=>axios.get('/')
+const Auth= {
+    getAll:()=>axios.get('/'),
+    login:()=>axios.get('/Auth/login')
+}
+
+const Category = {
+    getCategories:()=>axios.get('/category/'),
+    Add:(category:ICategory)=>axios.post('/category/Add',category),
+    Delete:(id:string)=>axios.get(`/category/delete/${id}`),
+    Update:(category:ICategory)=>axios.post('/category/Update',category)
 }
 
 
 const agent = {
-    Users,
+    Auth,
+    Category
 }
 
 export default agent

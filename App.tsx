@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import { Alert, StyleSheet, Text, View } from 'react-native';
 import agent from './agent/agent';
+import { Category } from './Models/CategoryModel';
 
 export default function App() {
 
@@ -9,7 +10,8 @@ export default function App() {
 
   const fetchFromEpress=async()=>{
  
-  const users =   await agent.Users.getAll()
+    const category = new Category("Cloth","nothin","red")
+  const users =   await agent.Category.Add(category)
   
   return users
   }
