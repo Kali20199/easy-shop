@@ -1,23 +1,20 @@
-export interface ICategory {
-    name:string,
-    icon:string,
-    color:string
+export interface ICategoryModel {
+    icon: string
+    name: string
+    color: string
 
 }
+export class CategoryModel {
+    icon = ``
+    name = ``
+    color = ``
 
-
-
-export class Category {
-    name=''
-    icon=''
-    color=''
-
-
-    constructor(  name:string,icon:string,color:string)
-    {
-        this.color = color,
+    constructor(
+        icon: string,
+        name: string, color: string,) {
         this.icon = icon
         this.name = name
-    }
+        this.color = color
 
+    }
 }

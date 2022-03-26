@@ -1,24 +1,28 @@
 import { StatusBar } from 'expo-status-bar';
+import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
 import { Alert, StyleSheet, Text, View } from 'react-native';
 import agent from './agent/agent';
-import { Category } from './Models/CategoryModel';
-
-export default function App() {
-
+import { CategoryModel } from './Models/CategoryModel';
+import { useStore } from './store/store';
 
 
-  const fetchFromEpress=async()=>{
+export  function App() {
+
+  const {productStore} = useStore()
+
+
+  // const fetchFromEpress=async()=>{
  
-    const category = new Category("Cloth","nothin","red")
-  const users =   await agent.Category.Add(category)
-  
-  return users
-  }
+  //   const category = new CategoryModel("Cloth","nothin","red")
+  // const users =   productStore.getAllProducts(category)
+  //  // fsdsdf
+  // return users
+  // } 
 
 
   useEffect(()=>{
-    fetchFromEpress()
+    // fetchFromEpress()
 
   },[])
   
@@ -29,7 +33,7 @@ export default function App() {
       <StatusBar style="auto" />
     </View>
   );
-}
+} 
 
 const styles = StyleSheet.create({
   container: {
@@ -39,3 +43,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+ 
+
+export default  observer(App)

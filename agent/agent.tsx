@@ -1,6 +1,6 @@
 
 import axios, { AxiosResponse } from 'axios'
-import { ICategory } from './../Models/CategoryModel';
+import { ICategoryModel } from './../Models/CategoryModel';
 
 
 axios.defaults.baseURL = 'http:/192.168.1.30:5000/api'
@@ -17,13 +17,12 @@ axios.interceptors.request.use((res) => {
 
 
 axios.interceptors.response.use((response:AxiosResponse) => { 
-
-
-    return response  
-}, 
+ 
+    return response    
+},   
     (responseError:any)=> { 
-   
-    console.log(responseError)    
+    
+    console.log(responseError)      
 })
 
 
@@ -34,9 +33,9 @@ const Auth= {
 
 const Category = {
     getCategories:()=>axios.get('/category/'),
-    Add:(category:ICategory)=>axios.post('/category/Add',category),
+    Add:(category:ICategoryModel)=>axios.post('/category/Add',category),
     Delete:(id:string)=>axios.get(`/category/delete/${id}`),
-    Update:(category:ICategory)=>axios.post('/category/Update',category)
+    Update:(category:ICategoryModel)=>axios.post('/category/Update',category)
 }
 
 
